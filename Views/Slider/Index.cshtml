@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <div class="form-group">
+                            <h6>Title</h6>
+                            <input type="text" class="form-control" autocomplete="off" placeholder="Enter title" name="title" id="title">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+
+                        <div class="form-group">
+                            <h6>Featured Image</h6>
+                            <div class="file-upload">
+
+                                <div class="image-upload-wrap">
+                                    <input name="ImageFile" id="image" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <div class="drag-text">
+                                        <h3>Click to Upload Image</h3>
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="~/images/" alt="your image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">
+                                            Remove <span class="image-title">Uploaded Image</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="card">
+                    <div class="form-group">
+                        <h6 class="Publish">Active</h6>
+                    </div>
+                    <div class="padd10">
+                        <div class="flexcreat">
+                            <div>
+
+                                <input class="form-check-input" type="radio" name="radio1" id="Yes" value="true" checked>
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div>
+
+                                <input class="form-check-input" type="radio" name="radio1" id="No" value="false" >
+                                <label class="form-check-label">No</label>
+                            </div>
+                        </div>
+                        <div class="padd10">
+                            <button class="btn btn-primary" type="button" onclick="Insert();">
+                                Publish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+
+    <script>
+
+        $('document').ready(function () {
+            toastr.success("hello world!");
+        });
+
+        //$('#btnSubmit').on('click', function () {
+        //    Insert();
+        //});
+
+        //for image
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+
+        function Insert() {
+            if ($('#title').val() === "") {
+                toastr.error("Title required");
+               
+            }
+            else if ($('#image').val() === "") {
+                toastr.error("Image required");
+                return false;
+            }
+
+            else {
+                var formData = new FormData();
+
+                var image = document.getElementById("image").files[0];
+               // var imgvalue = $('#image').val();
+                var radiobuttonval = $('input[name="radio1"]:checked').val();
+                formData.append('title', $('#title').val());
+                formData.append('status', radiobuttonval);
+                var files = $("#image").get(0).files;
+                if (files.length > 0) {
+                    formData.append("ImageFile", image);
+                    $.ajax({
+                        url: '/Slider/Insert',
+                        method: 'post',
+                        dataType: 'json',
+                        async: false,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+                            var path = "../images/";
+                            $('#image').attr("images", path);
+                            toastr.success("Slider Added Successfully");
+                            window.location.href = "/Slider/AllSlider";
+                        },
+                        error: function (data) {
+                            toastr.error("Unable to insert");
+                        }
+                    });
+                }
+                else {
+                    toastr.error("Error");
+                }
+
+            }
+            }
+        
+
+    </script>
+    
+}
+

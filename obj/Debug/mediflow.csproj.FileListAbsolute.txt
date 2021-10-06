@@ -1,0 +1,162 @@
+G:\Dot Net\mediflow\bin\mediflow.dll.config
+G:\Dot Net\mediflow\bin\mediflow.dll
+G:\Dot Net\mediflow\bin\mediflow.pdb
+G:\Dot Net\mediflow\bin\roslyn\csc.exe
+G:\Dot Net\mediflow\bin\roslyn\csc.exe.config
+G:\Dot Net\mediflow\bin\roslyn\csc.rsp
+G:\Dot Net\mediflow\bin\roslyn\csi.exe
+G:\Dot Net\mediflow\bin\roslyn\csi.exe.config
+G:\Dot Net\mediflow\bin\roslyn\csi.rsp
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.Managed.Core.targets
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\Dot Net\mediflow\bin\roslyn\Microsoft.Win32.Primitives.dll
+G:\Dot Net\mediflow\bin\roslyn\System.AppContext.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Collections.Immutable.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Console.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Globalization.Calendars.dll
+G:\Dot Net\mediflow\bin\roslyn\System.IO.Compression.dll
+G:\Dot Net\mediflow\bin\roslyn\System.IO.Compression.ZipFile.dll
+G:\Dot Net\mediflow\bin\roslyn\System.IO.FileSystem.dll
+G:\Dot Net\mediflow\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Net.Http.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Net.Sockets.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Reflection.Metadata.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Threading.Tasks.Extensions.dll
+G:\Dot Net\mediflow\bin\roslyn\System.ValueTuple.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Xml.XmlDocument.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Xml.XPath.dll
+G:\Dot Net\mediflow\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\Dot Net\mediflow\bin\roslyn\vbc.exe
+G:\Dot Net\mediflow\bin\roslyn\vbc.exe.config
+G:\Dot Net\mediflow\bin\roslyn\vbc.rsp
+G:\Dot Net\mediflow\bin\roslyn\VBCSCompiler.exe
+G:\Dot Net\mediflow\bin\roslyn\VBCSCompiler.exe.config
+G:\Dot Net\mediflow\bin\Antlr3.Runtime.dll
+G:\Dot Net\mediflow\bin\Dapper.dll
+G:\Dot Net\mediflow\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\Dot Net\mediflow\bin\Microsoft.Web.Infrastructure.dll
+G:\Dot Net\mediflow\bin\Newtonsoft.Json.dll
+G:\Dot Net\mediflow\bin\System.Web.Helpers.dll
+G:\Dot Net\mediflow\bin\System.Web.Mvc.dll
+G:\Dot Net\mediflow\bin\System.Web.Optimization.dll
+G:\Dot Net\mediflow\bin\System.Web.Razor.dll
+G:\Dot Net\mediflow\bin\System.Web.WebPages.Deployment.dll
+G:\Dot Net\mediflow\bin\System.Web.WebPages.dll
+G:\Dot Net\mediflow\bin\System.Web.WebPages.Razor.dll
+G:\Dot Net\mediflow\bin\WebGrease.dll
+G:\Dot Net\mediflow\bin\Dapper.xml
+G:\Dot Net\mediflow\bin\System.Web.Helpers.xml
+G:\Dot Net\mediflow\bin\System.Web.Mvc.xml
+G:\Dot Net\mediflow\bin\System.Web.Optimization.xml
+G:\Dot Net\mediflow\bin\System.Web.Razor.xml
+G:\Dot Net\mediflow\bin\System.Web.WebPages.xml
+G:\Dot Net\mediflow\bin\System.Web.WebPages.Deployment.xml
+G:\Dot Net\mediflow\bin\System.Web.WebPages.Razor.xml
+G:\Dot Net\mediflow\bin\Newtonsoft.Json.xml
+G:\Dot Net\mediflow\bin\Antlr3.Runtime.pdb
+G:\Dot Net\mediflow\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\Dot Net\mediflow\obj\Debug\mediflow.csproj.CoreCompileInputs.cache
+G:\Dot Net\mediflow\obj\Debug\mediflow.csproj.CopyComplete
+G:\Dot Net\mediflow\obj\Debug\mediflow.dll
+G:\Dot Net\mediflow\obj\Debug\mediflow.pdb
+G:\Dot Net\mediflow\obj\Debug\mediflow.csproj.AssemblyReference.cache
+G:\mediflow\obj\Debug\mediflow.csproj.AssemblyReference.cache
+G:\mediflow\obj\Debug\mediflow.csproj.CoreCompileInputs.cache
+G:\mediflow\obj\Debug\mediflow.dll
+G:\mediflow\obj\Debug\mediflow.pdb
+G:\mediflow\bin\mediflow.dll.config
+G:\mediflow\bin\mediflow.dll
+G:\mediflow\bin\mediflow.pdb
+G:\mediflow\bin\roslyn\csc.exe
+G:\mediflow\bin\roslyn\csc.exe.config
+G:\mediflow\bin\roslyn\csc.rsp
+G:\mediflow\bin\roslyn\csi.exe
+G:\mediflow\bin\roslyn\csi.exe.config
+G:\mediflow\bin\roslyn\csi.rsp
+G:\mediflow\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\mediflow\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\mediflow\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\mediflow\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\mediflow\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\mediflow\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\mediflow\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\mediflow\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\mediflow\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\mediflow\bin\roslyn\Microsoft.Managed.Core.targets
+G:\mediflow\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\mediflow\bin\roslyn\Microsoft.Win32.Primitives.dll
+G:\mediflow\bin\roslyn\System.AppContext.dll
+G:\mediflow\bin\roslyn\System.Collections.Immutable.dll
+G:\mediflow\bin\roslyn\System.Console.dll
+G:\mediflow\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+G:\mediflow\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\mediflow\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\mediflow\bin\roslyn\System.Globalization.Calendars.dll
+G:\mediflow\bin\roslyn\System.IO.Compression.dll
+G:\mediflow\bin\roslyn\System.IO.Compression.ZipFile.dll
+G:\mediflow\bin\roslyn\System.IO.FileSystem.dll
+G:\mediflow\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\mediflow\bin\roslyn\System.Net.Http.dll
+G:\mediflow\bin\roslyn\System.Net.Sockets.dll
+G:\mediflow\bin\roslyn\System.Reflection.Metadata.dll
+G:\mediflow\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+G:\mediflow\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\mediflow\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\mediflow\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\mediflow\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\mediflow\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\mediflow\bin\roslyn\System.Threading.Tasks.Extensions.dll
+G:\mediflow\bin\roslyn\System.ValueTuple.dll
+G:\mediflow\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\mediflow\bin\roslyn\System.Xml.XmlDocument.dll
+G:\mediflow\bin\roslyn\System.Xml.XPath.dll
+G:\mediflow\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\mediflow\bin\roslyn\vbc.exe
+G:\mediflow\bin\roslyn\vbc.exe.config
+G:\mediflow\bin\roslyn\vbc.rsp
+G:\mediflow\bin\roslyn\VBCSCompiler.exe
+G:\mediflow\bin\roslyn\VBCSCompiler.exe.config
+G:\mediflow\bin\Antlr3.Runtime.dll
+G:\mediflow\bin\Dapper.dll
+G:\mediflow\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\mediflow\bin\Microsoft.Web.Infrastructure.dll
+G:\mediflow\bin\Newtonsoft.Json.dll
+G:\mediflow\bin\System.Web.Helpers.dll
+G:\mediflow\bin\System.Web.Mvc.dll
+G:\mediflow\bin\System.Web.Optimization.dll
+G:\mediflow\bin\System.Web.Razor.dll
+G:\mediflow\bin\System.Web.WebPages.Deployment.dll
+G:\mediflow\bin\System.Web.WebPages.dll
+G:\mediflow\bin\System.Web.WebPages.Razor.dll
+G:\mediflow\bin\WebGrease.dll
+G:\mediflow\bin\Dapper.xml
+G:\mediflow\bin\System.Web.Helpers.xml
+G:\mediflow\bin\System.Web.Mvc.xml
+G:\mediflow\bin\System.Web.Optimization.xml
+G:\mediflow\bin\System.Web.Razor.xml
+G:\mediflow\bin\System.Web.WebPages.xml
+G:\mediflow\bin\System.Web.WebPages.Deployment.xml
+G:\mediflow\bin\System.Web.WebPages.Razor.xml
+G:\mediflow\bin\Newtonsoft.Json.xml
+G:\mediflow\bin\Antlr3.Runtime.pdb
+G:\mediflow\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\mediflow\obj\Debug\mediflow.csproj.CopyComplete

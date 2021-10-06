@@ -1,0 +1,328 @@
+﻿<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<link href="~/Content/alertify/alertify.default.css" rel="stylesheet" />
+<link href="~/Content/alertify/alertify.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/alertify/alertify.min.js"></script>
+@*<button id="two" type="button">lcks</button>*@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Posts</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-default">
+                    <form id="insert" role="form" method="post">
+                        <input type="hidden" name="_token" value="f8GgEHbilZkXdInovMhCI0QrjedzKllLSG8KSCOv">        <div class="card-body">
+                            <div class="form-group">
+                                <input type="hidden" id="id" name="id" />
+                                <label for="name">Name</label>
+                                <input type="text" name="categoryName" class="form-control" id="categoryNames" placeholder="Enter new category name.." required="" autofocus="">
+                                <div class="invalid-feedback msg-error-name"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+
+                                <div class="col-md-10">
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="10">Choose Status</option>
+                                        <option value="True">Checked</option>
+                                        <option value="False">Unchecked</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input id="btnSubmit" type="button" onclick="InsertCat();" value="Create" class="btn btn-success float-sm-right" />
+                            <input id="btnUpdate" type="button" onclick="UpdateCategory();" value="Update" class="btn btn-danger" />
+                            <button id="btn-reset" type="reset" class="btn btn-warning">Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="Allpost">
+                    <div class="flexcreate">
+                        <div>
+
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </div>
+                    <div class="postable TBL">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.N</th>
+                                    <th>Category Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="getcategorylist">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="hidden" id="id" name="id" />
+                    <input type="text" name="categoryName" class="form-control" id="catName" required="" autofocus="">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="statuss" name="status">
+                                <option value="10">Choose Status</option>
+                                <option value="0">Checked</option>
+                                <option value="1">Unchecked</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="UpdateCategory();">Update</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*for delete*@
+
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Do you want to delete?</h5>
+                <input type="hidden" id="ids" name="id" readonly>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Delete();" data-dismiss="modal"> >Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+        $('document').ready(function () {
+            GetCategoryList();
+            $('#btnUpdate').hide();
+        });
+
+
+        function InsertCat() {
+            if ($('#categoryNames').val() === '') {
+                toastr.error("Category Name required");
+                return false;
+            }
+            if ($('#status').val() === '10' || $('#status').val() === 10) {
+                toastr.error("Category status required");
+                return false;
+            }
+            else {
+                var data = {
+                    categoryName: $('#categoryNames').val(),
+                    status: $('#status').val(),
+                }
+
+                $.ajax({
+                    url: '/Category/Insert',
+                    method: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function (data) {
+                       
+                        if (data === "Success") {
+
+                            GetCategoryList();
+                            reset();
+                            toastr.success("Category Added");
+                        }
+                        else {
+                            toastr.error(data);
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Unable to insert data");
+                    }
+
+                });
+            }
+        }
+
+        function GetCategoryList() {
+          
+            $.ajax({
+                url: '/Category/GetCategoryList',
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    var cs = '';
+                    var i = 1;
+                    $.each(data, function (key, item) {
+                       
+                        cs += '<tr>'
+                        cs += '<td>' + i + '</td>';
+                        cs += '<td>' + item.categoryName + '</td>';
+                        cs += '<td>' + item.status + '</td>';
+                        cs += '<td><button class="btn btn-info" data-toggle="modal" data-target="#myModal"  onclick="GetCategoryById(' + item.id + ');">Edit</button> <button class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" onclick="GetDeleteFromModal(' + item.id + ');">Delete</button></td></tr>';
+                        i++;
+                        console.log('item.status');
+                    });
+                    $('#getcategorylist').html(cs);
+                },
+                error: function () {
+                    toastr.error("Unable to retrive data");
+                }
+            });
+        }
+
+        function Delete() {
+            var data = {
+                id: $('#ids').val()
+            }
+            $.ajax({
+                url: '/Category/Delete',
+                method: 'post',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    if (data == "Sucess") {
+                        toastr.success(data);
+                        GetCategoryList();
+                    }
+                    else {
+                        toastr.error(data);
+                    }
+                },
+                error: function (data) {
+                    toastr.error("Unable to delete");
+                }
+            });
+        }
+
+        function GetDeleteFromModal(id) {
+            $.ajax({
+                url: '/Category/DeleteFromMoadl?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    $('#ids').val(data.id);
+                    GetPostList();
+                },
+                error: function (data) {
+                    toastr.error(data);
+                }
+            });
+        }
+
+        function GetCategoryById(id) {
+            $.ajax({
+                url: '/Category/GetById?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    
+                    console.log('data list', data);
+                    $('#btnSubmit').show();
+                    $('#btnUpdate').hide();
+                    $('#catName').val(data.categoryName);
+                    $('#statuss').val(data.status == true ? '0' : '1').change();
+
+                    $('#id').val(data.id);
+                },
+                error: function (data) {
+                    toastr.error(data);
+                }
+            });
+        }
+
+        
+        function UpdateCategory() {
+            if ($('#categoryName').val() === '') {
+                toastr.error("Category Name required");
+                return false;
+            }
+
+            else if ($('#statuss').val() === '10' || $('#statuss').val() === 10) {
+                toastr.error("Choose category");
+                return false;
+            }
+               
+            else {
+                var data = {
+                    categoryName: $('#catName').val(),
+                    status: $('#statuss').val(),
+                    id: $('#id').val(),
+                }
+                debugger;
+                $.ajax({
+                    url: '/Category/Edit',
+                    method: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function (data) {
+                        toastr.success("sucess");
+                        $('#btnSubmit').show();
+                        $('#btnUpdate').hide();
+                        GetCategoryList();
+                        reset();
+
+                    },
+                    error: function (data) {
+                        toastr.error("Unable to update");
+                    }
+                });
+            }
+        }
+
+        function reset() {
+            $('#categoryNames').val("");
+            $('#status').val("10").change();
+        }
+
+    </script>
+}

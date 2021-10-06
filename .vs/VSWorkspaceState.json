@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Areas",
+    "\\Areas\\AdminModule",
+    "\\Areas\\AdminModule\\Controllers",
+    "\\Areas\\AdminModule\\Views",
+    "\\Areas\\AdminModule\\Views\\Register",
+    "\\Views\\Profile"
+  ],
+  "SelectedNode": "\\Areas\\AdminModule\\Controllers\\RegisterController.cs",
+  "PreviewInSolutionExplorer": false
+}

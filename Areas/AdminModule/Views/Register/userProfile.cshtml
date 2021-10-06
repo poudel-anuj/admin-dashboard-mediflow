@@ -1,0 +1,302 @@
+﻿
+
+
+<section class="content">
+    <button a class="btn btn-danger float-right" href="../AdminModule/Login/LogOut" data-toggle="tab">LogOut</a></button>
+
+
+
+
+
+    @{
+        var id = (int)Session["userId"];
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <div id="editImage">
+
+
+                            </div>
+                        </div>
+                        <h3 class="profile-username text-center">@Session["name"]</h3>
+                        <p class="text-muted text-center">@Session["about"]</p>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">About Me</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-user-md mr-1"></i> Occupation</strong>
+                        <p class="text-muted">
+                            Writter and Admin
+                        </p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> About</strong>
+                        <p class="text-muted">someone who likes to write and teach</p>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <form class="form-horizontal" action="https://magz.retenvi.com/admin/profile/3" method="POST" role="form" enctype="multipart/form-data">
+
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="_token" value="QvkubfvtyvgFbcoRWyttE6AezbyzxjM592BdxzMF">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#settings" data-toggle="tab">Settings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#photo" data-toggle="tab">Photo</a>
+                                </li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="settings">
+
+                                    <div class="form-group row">
+                                        <input type="hidden" id="id" name="id">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control" id="name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="username" class="form-control" id="username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputOccupation" class="col-sm-2 col-form-label">Occupation</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="occupation" class="form-control" id="occupation" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputAbout" class="col-sm-2 col-form-label">About</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="about" id="about" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="photo">
+                                        <div class="form-group">
+                                            <div class="upload-photo ready result ">
+                                                <input type="file" id="upload" name="image" value="Choose a file" accept="image/*" data-role="none" hidden="">
+                                                <input type="hidden" name="image_base64">
+                                                <div class="col-md-12">
+                                                    <div class="upload-msg">Click to upload your photo</div>
+                                                    <div id="display" hidden="" class="croppie-container"><div class="cr-boundary" aria-dropeffect="none" style="width: 300px; height: 300px;"><img class="cr-image" alt="preview" aria-grabbed="false"><div class="cr-viewport cr-vp-square" tabindex="0" style="width: 200px; height: 200px;"></div><div class="cr-overlay"></div></div><div class="cr-slider-wrap"><input class="cr-slider" type="range" step="0.0001" aria-label="zoom"></div></div>
+                                                    <div id="display-i" class="mx-auto">
+                                                        <div class="image-upload-wrap">
+                                                            <input name="ImageFile" id="images" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                                            <div class="drag-text">
+                                                                <h3>Click to Edit your Image</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-upload-content">
+                                                            <img class="file-upload-image" src="~/images/" alt="your image" />
+                                                            <div class="image-title-wrap">
+                                                                <button type="button" onclick="removeUpload()" class="remove-image">
+                                                                    Remove <span class="image-title">Uploaded Image</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary float-right" onclick="UpdateProfile();">Update Profile</button>
+                            </div>
+                        </div>
+                    s</div>
+                </form>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        $('document').ready(function () {
+
+            @*var id = (int)@Session["userId"];*@
+            GetProileById(@Session["userId"]);
+
+        });
+
+        var image1 = "";
+
+        function GetProileById(id) {
+           
+            $.ajax({
+                url: '/Register/GetById?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    //for update we create image1 empty variable and take the db image value image1.
+                    image1 = data.image;
+                    $('#name').val(data.name);
+                    $('#username').val(data.username);
+                    $('#email').val(data.email);
+                    $('#occupation').val(data.occupation);
+                    $('#about').val(data.about);
+                    var a = '<img src="' + data.image + '" height="100" width="100"/>';
+                    $('#editImage').html(a);
+                    $('#id').val(data.id);
+                },
+                error: function (data) {
+                    toastr.error("data not found");
+                }
+            });
+        }
+
+
+        //for image update or upload
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                removeUpload();
+            }
+        }
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+
+
+            //to remove name from the selected box
+            $('.file-upload-image').attr('src', '');
+            document.getElementById("images").value = "";
+
+            //another way to remove image
+            //$('#img').attr('src', '');
+            //$('#images').val()='';
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+
+
+        });
+
+
+        function UpdateProfile() {
+            if ($('#name').val() === '') {
+                toastr.error(" Name required");
+                return false;
+            }
+            else if ($('#username').val() === '') {
+                toastr.error(" username required");
+                return false;
+            }
+            if ($('#email').val() === '') {
+                toastr.error(" Email required");
+                return false;
+            }
+            else if ($('#occupation').val() === '') {
+                toastr.error(" Occupation required");
+                return false;
+            }
+            else if ($('#image').val() === '') {
+                toastr.error(" image required");
+                return false;
+            }
+            else {
+                var formData = new FormData();
+
+                var image = document.getElementById("images").files[0];
+                 var imgvalue = $('#image').val();
+
+                formData.append('name', $('#name').val());
+                formData.append('username', $('#username').val());
+                formData.append('email', $('#email').val());
+                formData.append('occupation', $('#occupation').val());
+                formData.append('about', $('#about').val());
+                formData.append('id', $('#id').val());
+
+                var files = $("#images").get(0).files;
+                if (files.length > 0) {
+                    formData.append("ImageFile", image);
+                }
+                else
+                {
+                    formData.append("image", image1);
+                }
+            }
+            $.ajax({
+                url: '/Register/Edit',
+                method: 'post',
+                dataType: 'json',
+                async: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    var path = "/images/";
+                    $('#images').attr("images", path);
+                    toastr.success(data);
+                    window.location.href = "/AdminModule/Register/userProfile";
+                },
+                error: function (data) {
+                    toastr.error("Unable to insert");
+                }
+            });
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+}

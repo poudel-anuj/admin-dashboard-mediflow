@@ -1,0 +1,237 @@
+﻿<section class="content">
+    <h2> @Session["email"]</h2><a href="../../AdminModule/Login/LogOut">Log Out</a>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <div class="form-group">
+                            <h6>Title</h6>
+                            <input type="text" class="form-control" autocomplete="off" placeholder="Enter title" name="title" id="title">
+                        </div>
+                        <div class="form-group">
+                            <h6>Slug</h6>
+                            <input type="text" class="form-control" autocomplete="off" name="slug" id="slug">
+                        </div>
+                        <div class="form-group Description">
+                            <h6>Description</h6>
+                            <textarea name="description" class="form-control" id="summernote" autocomplete="off" placeholder="Enter Description">
+              </textarea>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <div class="form-group">
+                            <h6>Select Categories</h6>
+                            <select class="form-control" name="categoryId" id="categoryId">
+                                <option value="0">Choose Category</option>
+                                @{
+                                    if (ViewBag.data != null)
+                                    {
+                                        foreach (var item in ViewBag.data)
+                                        {
+                                            <option value="@item.id">@item.categoryName</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Featured Image</h6>
+                            <div class="file-upload">
+
+
+                                <div class="image-upload-wrap">
+                                    <input name="ImageFile" id="image" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <div class="drag-text">
+                                        <h3>Click to Upload Image</h3>
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="~/images/" alt="your image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">
+                                            Remove <span class="image-title">Uploaded Image</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Metades">
+                            <div class="form-group">
+                                <h6>Meta Description</h6>
+                                <textarea placeholder="Enter desciption post" id="metaDescription" name="metaDescription"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <h6>Meta Keyword</h6>
+                                <textarea placeholder="Enter keyword post" name="metaKeyword" id="metaKeyword"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="form-group">
+                        <h6 class="Publish">Active</h6>
+                    </div>
+                    <div class="padd10">
+                        <div class="flexcreat" id="">
+                            <div>
+
+                                <input class="form-check-input" type="radio" name="radio" id="Yes" value="true" checked>
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div>
+
+                                <input class="form-check-input" type="radio" name="radio" id="No" value="false">
+                                <label class="form-check-label">No</label>
+                            </div>
+                        </div>
+                        <div class="padd10">
+                            <button class="btn btn-primary" type="button" onclick="InsertPost();">Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $('document').ready(function () {
+
+            $('#summernote').summernote();
+        });
+
+        //for image upload
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+
+
+        function InsertPost() {
+            if ($('#title').val() === '') {
+                toastr.error(" Name required");
+                return false;
+            }
+            if ($('#slug').val() === '') {
+                toastr.error(" slug required");
+                return false;
+            }
+            if ($('#summernote').val() === '') {
+                toastr.error("Description required");
+                return false;
+            }
+            if ($('#metaDescription').val() === '') {
+                toastr.error(" MetaDescription required");
+                return false;
+            }
+            if ($('#metaKeyword').val() === '') {
+                toastr.error(" MetaKeyword required");
+                return false;
+            }
+            if ($('#categoryId').val() === '0' || $('#categoryId').val() === 10) {
+                toastr.error("Category status required");
+                return false;
+            }
+            if ($('#image').val() === '') {
+                toastr.error(" Image required");
+                return false;
+            }
+            else
+            {
+                var formData = new FormData();
+                var image = document.getElementById("image").files[0];
+                var imgvalue = $('#image').val();
+                var radiobuttonval = $('input[name="radio"]:checked').val();
+                formData.append('title', $('#title').val());
+                formData.append('slug', $('#slug').val());
+                formData.append('description', $('#summernote').code());
+                formData.append('categoryId', $('#categoryId').val());
+                formData.append('metaDescription', $('#metaDescription').val());
+                formData.append('metaKeyword', $('#metaKeyword').val());
+                formData.append('status', radiobuttonval);
+                var files = $("#image").get(0).files;
+                if (files.length > 0) {
+                    formData.append("ImageFile", image);
+                    $.ajax({
+                        url: '/Post/Insert',
+                        method: 'post',
+                        dataType: 'json',
+                        async: false,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+                            var path = "../images/";
+                            $('#image').attr("images", path);
+                            toastr.success("Post Added Successfully");
+                            window.location.href = "/Post/AllPost";
+                            reset();
+                        },
+                        error: function (data) {
+                            toastr.error("Unable to insert");
+                        }
+                    });
+                }
+                else {
+                    toastr.error("Error");
+                }
+            }
+        }
+
+
+        function reset() {
+            title: $('#title').val("");
+            slug: $('#slug').val("");
+            description: $('#summernote').val("");
+            metaDescription: $('#metaDescription').val("");
+            metaKeyword: $('#metaKeyword').val("");
+            status: $('#status').val("");
+
+        }
+
+
+
+
+
+
+    </script>
+}

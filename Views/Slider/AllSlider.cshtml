@@ -1,0 +1,343 @@
+﻿@model IEnumerable<mediflow.Models.slider>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="Allpost">
+            <div class="flexcreate">
+                <div>
+                    <a href="Index" class="btn btn-primary">Create</a>
+                </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </div>
+            <div class="postable TBL">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="slider" id="getSliderList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal for update-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <div class="form-group">
+                                        <input type="hidden" name="id" id="id">
+                                        <h6>Title</h6>
+                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter title" name="title" id="title">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+
+                                    <div class="form-group">
+                                        <h6>Featured Image</h6>
+                                        <div class="file-upload">
+
+
+                                            <div class="image-upload-wrap">
+                                                <input name="ImageFile" id="images" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                                <div class="drag-text">
+                                                    <h3>Click to Upload Image</h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content">
+                                                <img class="file-upload-image" src="~/images/" alt="your image" id="img" />
+                                                <div class="image-title-wrap">
+                                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="editImage">
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="card">
+                                <div class="form-group">
+                                    <h6 class="Publish">Active</h6>
+                                </div>
+                                <div class="padd10">
+                                    <div class="flexcreat" id="status">
+                                        <div>
+
+                                            <input class="form-check-input" type="radio" name="radio" id="Yes" value="true">
+                                            <label class="form-check-label">Yes</label>
+                                        </div>
+                                        <div>
+
+                                            <input class="form-check-input" type="radio" name="radio" id="No" value="false">
+                                            <label class="form-check-label">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="padd10">
+                                        <button class="btn btn-primary" type="button" onclick="UpdateSlider();">
+                                            Publish
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*for delete*@
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Do you want to delete?</h5>
+                <input type="hidden" id="ids" name="id" readonly>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Delete();" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        var image1 = "";
+
+        $('document').ready(function () {
+
+            GetSliderList();
+        });
+
+
+
+        function GetSliderList() {
+            debugger;
+            $.ajax({
+                url: '/Slider/GetAllSlider',
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    var cs = '';
+                    var i = 1;
+
+                    $.each(data, function (key, item) {
+                        cs += '<tr>'
+                        cs += '<td>' + i + '</td>';
+                        cs += '<td>' + item.title + '</td>';
+                        cs += '<td><img src="' + item.image + '" width="70" height="75"/></td>';
+                        cs += '<td><button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="GetSliderById(' + item.id + ');">Edit</button> <button class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" onclick="GetDeleteById(' + item.id + ');" >Delete</button></td></tr>';
+                        i++;
+                    });
+                    $('.slider').html(cs);
+                    toastr.sucess("Data retrived");
+                },
+                error: function () {
+                    toastr.error("Unable to retrive data");
+                }
+
+            });
+        }
+
+        function GetDeleteById(id) {
+            $.ajax({
+                url: '/Slider/DeleteFromMoadl?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+
+                    $('#ids').val(data.id);
+                    GetSliderList();
+                },
+                error: function (data) {
+                    toastr.error(data);
+                }
+            });
+        }
+
+        function Delete() {
+            var data = {
+                id: $('#ids').val()
+            }
+            $.ajax({
+                url: '/Slider/Delete',
+                method: 'post',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    toastr.success("Deleted");
+                    GetSliderList();
+                },
+                error: function (data) {
+                    toastr.error("Unable to delete");
+                }
+            });
+        }
+
+        function GetSliderById(id) {
+
+            $.ajax({
+                url: '/Slider/GetById?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+
+                    //for update we create image1 empty variable and take the db image value image1.
+                    image1 = data.image;
+                    $('#title').val(data.title);
+
+                    var a = '<img src="' + data.image + '" height="100" width="100"/>';
+                    $('#editImage').html(a);
+                    if (data.status === false) {
+                        $('#No').prop("checked", true);
+                    }
+                    else if (data.status === true) {
+                        $('#Yes').prop("checked", true);
+                    }
+                    $('#id').val(data.id);
+                },
+                error: function (data) {
+                    toastr.error(data);
+                }
+            });
+        }
+
+        //for image update
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                removeUpload();
+            }
+        }
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+
+
+            //to remove name from the selected box
+            $('.file-upload-image').attr('src', '');
+            document.getElementById("images").value = "";
+
+            //another way to remove image
+            //$('#img').attr('src', '');
+            //$('#images').val()='';
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+
+
+        });
+
+
+
+        function UpdateSlider() {
+            if ($('#title').val() === '') {
+                toastr.error(" Name required");
+                return false;
+            }
+            else {
+                var formData = new FormData();
+
+                var image = document.getElementById("images").files[0];
+                // var imgvalue = $('#image').val();
+                var radiobuttonval = $('input[name="radio"]:checked').val();
+                formData.append('title', $('#title').val());
+                formData.append('id', $('#id').val());
+                formData.append('status', radiobuttonval);
+                var files = $("#images").get(0).files;
+                if (files.length > 0) {
+                    formData.append("ImageFile", image);
+                }
+                else {
+                    formData.append("image", image1);
+                }
+            }
+            $.ajax({
+                url: '/Slider/Edit',
+                method: 'post',
+                dataType: 'json',
+                async: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    var path = "../images/";
+                    $('#image').attr("images", path);
+                    toastr.success(data);
+                    GetSliderList();
+                },
+                error: function (data) {
+                    toastr.error("Unable to update");
+                }
+            });
+        }
+
+
+
+    </script>
+
+}
+
